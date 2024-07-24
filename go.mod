@@ -1,4 +1,4 @@
-module github.com/inaciogu/go-sqs
+module github.com/thejasn/go-sqs
 
 go 1.20
 

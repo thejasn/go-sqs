@@ -10,10 +10,10 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/sqs"
 	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
-	"github.com/inaciogu/go-sqs/consumer"
+	"github.com/thejasn/go-sqs/consumer"
 
-	"github.com/inaciogu/go-sqs/consumer/message"
-	"github.com/inaciogu/go-sqs/mocks"
+	"github.com/thejasn/go-sqs/consumer/message"
+	"github.com/thejasn/go-sqs/mocks"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"

@@ -3,7 +3,7 @@ package handler
 import (
 	"context"
 
-	sqsclient "github.com/inaciogu/go-sqs/consumer"
+	sqsclient "github.com/thejasn/go-sqs/consumer"
 )
 
 // SQSHandler is responsible for running the SQS clients concurrently

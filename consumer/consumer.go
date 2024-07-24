@@ -10,8 +10,8 @@ import (
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/sqs"
 	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
-	"github.com/inaciogu/go-sqs/consumer/logger"
-	"github.com/inaciogu/go-sqs/consumer/message"
+	"github.com/thejasn/go-sqs/consumer/logger"
+	"github.com/thejasn/go-sqs/consumer/message"
 )
 
 type SQSService interface {
