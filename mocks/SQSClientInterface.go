@@ -3,7 +3,9 @@
 package mocks
 
 import (
-	sqs "github.com/aws/aws-sdk-go/service/sqs"
+	"context"
+
+	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
 	mock "github.com/stretchr/testify/mock"
 )
 
@@ -13,7 +15,7 @@ type SQSClientInterface struct {
 }
 
 // GetQueueUrl provides a mock function with given fields:
-func (_m *SQSClientInterface) GetQueueUrl() *string {
+func (_m *SQSClientInterface) GetQueueUrl(ctx context.Context) *string {
 	ret := _m.Called()
 
 	var r0 *string
@@ -29,7 +31,7 @@ func (_m *SQSClientInterface) GetQueueUrl() *string {
 }
 
 // GetQueues provides a mock function with given fields: prefix
-func (_m *SQSClientInterface) GetQueues(prefix string) []*string {
+func (_m *SQSClientInterface) GetQueues(ctx context.Context, prefix string) []*string {
 	ret := _m.Called(prefix)
 
 	var r0 []*string
@@ -45,21 +47,21 @@ func (_m *SQSClientInterface) GetQueues(prefix string) []*string {
 }
 
 // Poll provides a mock function with given fields:
-func (_m *SQSClientInterface) Poll() {
+func (_m *SQSClientInterface) Poll(ctx context.Context) {
 	_m.Called()
 }
 
 // ProcessMessage provides a mock function with given fields: message, queueUrl
-func (_m *SQSClientInterface) ProcessMessage(message *sqs.Message, queueUrl string) {
+func (_m *SQSClientInterface) ProcessMessage(ctx context.Context, message types.Message, queueUrl string) {
 	_m.Called(message, queueUrl)
 }
 
 // ReceiveMessages provides a mock function with given fields: queueUrl, ch
-func (_m *SQSClientInterface) ReceiveMessages(queueUrl string, ch chan *sqs.Message) error {
+func (_m *SQSClientInterface) ReceiveMessages(ctx context.Context, queueUrl string, ch chan types.Message) error {
 	ret := _m.Called(queueUrl, ch)
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(string, chan *sqs.Message) error); ok {
+	if rf, ok := ret.Get(0).(func(string, chan types.Message) error); ok {
 		r0 = rf(queueUrl, ch)
 	} else {
 		r0 = ret.Error(0)
@@ -69,7 +71,7 @@ func (_m *SQSClientInterface) ReceiveMessages(queueUrl string, ch chan *sqs.Mess
 }
 
 // Start provides a mock function with given fields:
-func (_m *SQSClientInterface) Start() {
+func (_m *SQSClientInterface) Start(ctx context.Context) {
 	_m.Called()
 }
 
@@ -78,7 +80,8 @@ func (_m *SQSClientInterface) Start() {
 func NewSQSClientInterface(t interface {
 	mock.TestingT
 	Cleanup(func())
-}) *SQSClientInterface {
+},
+) *SQSClientInterface {
 	mock := &SQSClientInterface{}
 	mock.Mock.Test(t)
 

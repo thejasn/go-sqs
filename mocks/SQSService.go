@@ -3,9 +3,10 @@
 package mocks
 
 import (
+	"context"
 	"time"
 
-	sqs "github.com/aws/aws-sdk-go/service/sqs"
+	sqs "github.com/aws/aws-sdk-go-v2/service/sqs"
 	mock "github.com/stretchr/testify/mock"
 )
 
@@ -15,7 +16,7 @@ type SQSService struct {
 }
 
 // ChangeMessageVisibility provides a mock function with given fields: input
-func (_m *SQSService) ChangeMessageVisibility(input *sqs.ChangeMessageVisibilityInput) (*sqs.ChangeMessageVisibilityOutput, error) {
+func (_m *SQSService) ChangeMessageVisibility(ctx context.Context, input *sqs.ChangeMessageVisibilityInput, opts ...func(*sqs.Options)) (*sqs.ChangeMessageVisibilityOutput, error) {
 	ret := _m.Called(input)
 
 	var r0 *sqs.ChangeMessageVisibilityOutput
@@ -41,7 +42,7 @@ func (_m *SQSService) ChangeMessageVisibility(input *sqs.ChangeMessageVisibility
 }
 
 // DeleteMessage provides a mock function with given fields: input
-func (_m *SQSService) DeleteMessage(input *sqs.DeleteMessageInput) (*sqs.DeleteMessageOutput, error) {
+func (_m *SQSService) DeleteMessage(ctx context.Context, input *sqs.DeleteMessageInput, opts ...func(*sqs.Options)) (*sqs.DeleteMessageOutput, error) {
 	ret := _m.Called(input)
 
 	var r0 *sqs.DeleteMessageOutput
@@ -67,7 +68,7 @@ func (_m *SQSService) DeleteMessage(input *sqs.DeleteMessageInput) (*sqs.DeleteM
 }
 
 // GetQueueUrl provides a mock function with given fields: input
-func (_m *SQSService) GetQueueUrl(input *sqs.GetQueueUrlInput) (*sqs.GetQueueUrlOutput, error) {
+func (_m *SQSService) GetQueueUrl(ctx context.Context, input *sqs.GetQueueUrlInput, opts ...func(*sqs.Options)) (*sqs.GetQueueUrlOutput, error) {
 	ret := _m.Called(input)
 
 	var r0 *sqs.GetQueueUrlOutput
@@ -93,7 +94,7 @@ func (_m *SQSService) GetQueueUrl(input *sqs.GetQueueUrlInput) (*sqs.GetQueueUrl
 }
 
 // ListQueues provides a mock function with given fields: input
-func (_m *SQSService) ListQueues(input *sqs.ListQueuesInput) (*sqs.ListQueuesOutput, error) {
+func (_m *SQSService) ListQueues(ctx context.Context, input *sqs.ListQueuesInput, opts ...func(*sqs.Options)) (*sqs.ListQueuesOutput, error) {
 	ret := _m.Called(input)
 
 	var r0 *sqs.ListQueuesOutput
@@ -119,7 +120,7 @@ func (_m *SQSService) ListQueues(input *sqs.ListQueuesInput) (*sqs.ListQueuesOut
 }
 
 // ReceiveMessage provides a mock function with given fields: input
-func (_m *SQSService) ReceiveMessage(input *sqs.ReceiveMessageInput) (*sqs.ReceiveMessageOutput, error) {
+func (_m *SQSService) ReceiveMessage(ctx context.Context, input *sqs.ReceiveMessageInput, opts ...func(*sqs.Options)) (*sqs.ReceiveMessageOutput, error) {
 	time.Sleep(500 * time.Millisecond)
 
 	ret := _m.Called(input)
@@ -151,7 +152,8 @@ func (_m *SQSService) ReceiveMessage(input *sqs.ReceiveMessageInput) (*sqs.Recei
 func NewSQSService(t interface {
 	mock.TestingT
 	Cleanup(func())
-}) *SQSService {
+},
+) *SQSService {
 	mock := &SQSService{}
 	mock.Mock.Test(t)
 
