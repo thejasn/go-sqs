@@ -31,7 +31,7 @@ type SQSClientInterface interface {
 	ReceiveMessages(ctx context.Context, queueUrl string, ch chan types.Message) error
 	ProcessMessage(ctx context.Context, message types.Message, queueUrl string)
 	Poll(context.Context)
-	GetQueues(ctx context.Context, prefix string) []*string
+	GetQueues(ctx context.Context, prefix string) []string
 	Start(context.Context)
 }
 
@@ -51,6 +51,11 @@ type SQSClientOptions struct {
 	// BackoffMultiplier is the multiplier used to calculate the backoff time (visibility timeout)
 	BackoffMultiplier float64
 }
+
+var (
+	_ SQSClientInterface = &SQSClient{}
+	_ SQSService         = &sqs.Client{}
+)
 
 type SQSClient struct {
 	Client        SQSService
@@ -132,7 +137,7 @@ func (s *SQSClient) GetQueueUrl(ctx context.Context) *string {
 		panic(err)
 	}
 
-	return aws.String(*urlResult.QueueUrl)
+	return urlResult.QueueUrl
 }
 
 // GetQueues returns a list of queues based on the prefix
